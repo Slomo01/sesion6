@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Lista de Números</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            padding: 50px;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2 class="mb-4">Generar lista de números</h2>
+
+        <!-- Input para ingresar el número -->
+        <div class="mb-2" >
+            <label for="numero" class="form-label">Ingresa un número</label>
+            <input type="number" id="numero" class="form-control" placeholder="Ingresa un número" min="1">
+        </div>
+
+        <!-- Botón para generar la lista -->
+        <button class="btn btn-primary" onclick="generarLista()">Generar Lista</button>
+
+        <!-- Donde se mostrará la lista generada -->
+        <ul class="list-group mt-4" id="listaNumeros"></ul>
+    </div>
+
+    <!-- Bootstrap JS + Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Función para generar la lista de números
+        function generarLista() {
+            // Obtener el número ingresado
+            let numero = parseInt(document.getElementById('numero').value);
+
+            // Verificar si es un número válido
+            if (isNaN(numero) || numero < 1) {
+                alert("ingresa un número válido mayor a 0.");
+                return;
+            }
+
+            // Obtener el elemento donde se va a mostrar la lista
+            let lista = document.getElementById('listaNumeros');
+
+            // Limpiar la lista anterior (si la hay)
+            lista.innerHTML = "";
+
+            // Generar la lista de números
+            for (let i = 1; i <= numero; i++) {
+                // Crear un nuevo elemento <li>
+                let item = document.createElement('li');
+                item.classList.add('list-group-item');  // Clase de Bootstrap para dar estilo
+                item.textContent = i;  // Asignar el número como texto del <li>
+                lista.appendChild(item);  // Añadir el <li> a la lista <ul>
+            }
+        }
+    </script>
+</body>
+</html>
